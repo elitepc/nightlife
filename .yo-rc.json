@@ -16,9 +16,10 @@
       "ngroute": true,
       "bootstrap": true,
       "uibootstrap": true,
-      "socketio": true,
       "mongoose": true,
-      "auth": true
+      "auth": true,
+      "oauth": true,
+      "twitterAuth": true
     }
   },
   "generator-ng-component": {

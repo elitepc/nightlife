@@ -44,6 +44,12 @@ var all = {
     }
   },
 
+  twitter: {
+    clientID:     process.env.TWITTER_ID || 'id',
+    clientSecret: process.env.TWITTER_SECRET || 'secret',
+    callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
+  },
+
 };
 
 // Export the config object based on the NODE_ENV
