@@ -8,6 +8,9 @@ angular.module('nightlifeApp')
       $scope.awesomeThings = awesomeThings;
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
+    $http.get('/api/users/tryfriends').success(function(stuff){
+      console.log(stuff);
+    });
 
     $scope.addThing = function() {
       if($scope.newThing === '') {

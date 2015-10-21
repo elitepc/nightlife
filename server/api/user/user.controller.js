@@ -99,3 +99,35 @@ exports.me = function(req, res, next) {
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
+
+/**
+ * Get twitter friends
+ */
+exports.tryGetTwitterFriends = function(req, res, next){
+  var request = require('request');
+  var OAuth = require('oauth');
+
+  var oauth = new OAuth.OAuth(
+    'https://api.twitter.com/oauth/request_token',
+    'https://api.twitter.com/oauth/access_token',
+    config.twitter.clientID,
+    config.twitter.clientSecret,
+    '1.0A',
+    null,
+    'HMAC-SHA1'
+  );
+  oauth.get(
+    'https://api.twitter.com/1.1/friends/ids.json?cursor=-1&user_id=' + req.user.twitter.id + '&count=5000',
+    process.env.TWITTER_TOKEN,
+    process.env.TWITTER_TOKEN_SECRET,
+    function (e, data, res){
+      if (e) console.error(e);
+
+      var idList = JSON.parse(data).ids;
+
+      console.log(idList);
+    }
+  );
+
+
+};
