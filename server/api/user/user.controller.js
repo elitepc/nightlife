@@ -104,7 +104,7 @@ exports.authCallback = function(req, res, next) {
  * Get twitter friends
  */
 exports.tryGetTwitterFriends = function(req, res, next){
-  var request = require('request');
+  
   var OAuth = require('oauth');
 
   var oauth = new OAuth.OAuth(

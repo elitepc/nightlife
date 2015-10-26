@@ -1,3 +1,36 @@
 <div class="col-md-12">
-This is the search view.
+  <div class="error">
+    <ul ng-show="errors.length">
+      <li ng-repeat="error in errors">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <form class="form" name="form" ng-submit="search(form)" novalidate>
+
+    <div class="form-group">
+      <label>Search by entering a city</label>
+
+      <input type="text" name="city" class="form-control" ng-model="city" placeholder="Lisbon" required>
+    </div>
+    <div>
+      <button class="btn btn-inverse btn-lg btn-login" type="submit">
+        Search
+      </button>
+    </div>
+  </form>
+
+  <section class="places">
+    <div class="place" ng-repeat="place in places">
+      <a href="{{ place.url }}">
+        <img alt="{{ place.name + '-image'}}" src="{{ place.image_url }}">
+        {{ place.name }}
+      </a>
+      <br>
+      <span ng-show="place.snippet_text">"{{ place.snippet_text }}"</span>
+      <button class="btn btn-inverse btn-lg btn-login" type="submit">
+        0 going
+      </button>
+    </div>
+  </section>
 </div>

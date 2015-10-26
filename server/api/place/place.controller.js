@@ -11,6 +11,29 @@ exports.index = function(req, res) {
   });
 };
 
+// Get list of places from Yelp
+exports.yelp = function(req, res) {
+
+  var yelp = require("yelp").createClient({
+    consumer_key: process.env.YELP_KEY,
+    consumer_secret: process.env.YELP_SECRET,
+    token: process.env.YELP_TOKEN,
+    token_secret: process.env.YELP_TOKEN_SECRET
+  });
+
+  // See http://www.yelp.com/developers/documentation/v2/search_api
+  yelp.search({term: "bar", location: req.params.search}, function(error, data) {
+    console.log("error", error);
+    console.log("data", data);
+    if(error){
+      return res.status(400).json(JSON.parse(error.data).error.text);
+    }
+
+    return res.json(data);
+  });
+
+};
+
 // Get a single place
 exports.show = function(req, res) {
   Place.findById(req.params.id, function (err, place) {
