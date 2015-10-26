@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('nightlifeApp')
-  .controller('PlacesCtrl', function ($scope) {
+  .controller('SearchCtrl', function ($scope) {
     $scope.message = 'Hello';
   });
